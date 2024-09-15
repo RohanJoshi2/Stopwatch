@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { Stopwatch } from '@/components/Stopwatch';
+import { Stopwatch } from '@/components/My_Components/Stopwatch';
 
 export default function App() {
 
