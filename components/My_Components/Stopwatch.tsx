@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
   },
   lapRow: {
     flexDirection: 'row',
+    justifyContent: 'space-between', // Place lap text on the left and delete button on the right
     alignItems: 'center',
     marginVertical: 5,
     paddingVertical: 5,
