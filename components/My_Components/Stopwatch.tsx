@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 
 export function Stopwatch() {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
@@ -68,13 +68,23 @@ export function Stopwatch() {
     <View style={styles.container}>
       <Text style={styles.text}>{formatTime(time)}</Text>
       <View style={styles.buttonContainer}>
-        <Button title='start' onPress={start} />
-        <Button title='pause' onPress={pause} />
-        <Button title='reset' onPress={reset} />
+        <TouchableOpacity style={styles.button} onPress={start}>
+          <Text style={styles.buttonText}>Start</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={pause}>
+          <Text style={styles.buttonText}>Pause</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={reset}>
+          <Text style={styles.buttonText}>Reset</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
-        <Button title='lap' onPress={lap} />
-        <Button title='clear' onPress={clear} />
+        <TouchableOpacity style={styles.button} onPress={lap}>
+          <Text style={styles.buttonText}>Lap</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={clear}>
+          <Text style={styles.buttonText}>Clear</Text>
+        </TouchableOpacity>
       </View>
       <ScrollView style={styles.lapContainer}>
         {laps.map((lap, index) => (
@@ -96,10 +106,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 50,
   },
   buttonContainer: {
-    alignItems: 'center',
     flexDirection: 'row',
+    justifyContent: 'center', 
+    width: '80%',
     marginVertical: 10,
   },
   text: {
@@ -109,32 +121,44 @@ const styles = StyleSheet.create({
   },
   lapContainer: {
     width: '80%',
+    maxHeight: '30%',
     marginTop: 20,
   },
   lapRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 5,
-    borderBottomColor: 'white',
-    borderBottomWidth: 1,
     paddingVertical: 5,
+    borderBottomColor: '#fff',
+    borderBottomWidth: 1,
   },
   lapText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 18,
   },
   deleteButton: {
-    backgroundColor: 'red',
     borderRadius: 15,
-    width: 30,
-    height: 30,
+    width: 25,
+    height: 25,
     justifyContent: 'center',
     alignItems: 'center',
   },
   deleteButtonText: {
     color: 'white',
-    fontSize: 20,
-    lineHeight: 20,
+    fontSize: 16,
+    lineHeight: 16,
+  },
+  button: {
+    backgroundColor: '#00a6ed', // Standard button color
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    width: '30%', // Standardized width for all buttons
+    alignItems: 'center',
+    marginHorizontal: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
