@@ -43,7 +43,7 @@ export function Stopwatch() {
     setRunning(false);
   };
 
-  const formatTime = (time) => {
+  const formatTime = (time: { hours: any; minutes: any; seconds: any; milliseconds: any; }) => {
     return `${time.hours.toString().padStart(2, '0')}:${time.minutes.toString().padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}:${time.milliseconds.toString().padStart(3, '0')}`;
   };
 
