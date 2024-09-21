@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { Clock } from '@/components/Clock';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { Stopwatch } from '@/components/My_Components/Stopwatch';
 
 export default function App() {
+
   return (
     <View style={styles.container}>
-      <Clock/>
+      <Stopwatch/>
     </View>
   );
 }
@@ -18,5 +19,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
+    fontSize: 40,
+    marginBottom: 20,
   },
 });

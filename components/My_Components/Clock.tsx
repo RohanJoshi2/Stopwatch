@@ -1,17 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { StyleSheet, Text } from 'react-native';
 
 export function Clock() {
   const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
+  
+  const timer = setInterval (() => {
+    setTime(new Date());
+  }, 1000);
+  
   const hours = time.getHours();
   const minutes = time.getMinutes();
   
