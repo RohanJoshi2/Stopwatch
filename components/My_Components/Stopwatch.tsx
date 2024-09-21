@@ -5,7 +5,7 @@ export function Stopwatch() {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
   const [running, setRunning] = useState(false);
   const startTimeRef = useRef(0);
-  const intervalRef = useRef();
+  const intervalRef = useRef(setInterval(() => {}, 0));
 
   const start = () => {
     if (!running) {
