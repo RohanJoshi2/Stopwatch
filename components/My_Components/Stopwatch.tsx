@@ -1,23 +1,11 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 export function Stopwatch() {
   const [time, setTime] = useState({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
   const [running, setRunning] = useState(false);
   const startTimeRef = useRef(0);
-  const intervalRef = useRef(null);
-
-  const updateTime = useCallback(() => {
-    const now = Date.now();
-    const diff = now - startTimeRef.current;
-
-    const hours = Math.floor(diff / 3600000);
-    const minutes = Math.floor((diff % 3600000) / 60000);
-    const seconds = Math.floor((diff % 60000) / 1000);
-    const milliseconds = diff % 1000;
-
-    setTime({ hours, minutes, seconds, milliseconds });
-  }, []);
+  const intervalRef = useRef();
 
   const start = () => {
     if (!running) {
@@ -28,7 +16,17 @@ export function Stopwatch() {
         time.seconds * 1000 +
         time.milliseconds
       );
-      intervalRef.current = setInterval(updateTime, 1);
+      intervalRef.current = setInterval(() => {
+        const now = Date.now();
+        const diff = now - startTimeRef.current;
+    
+        const hours = Math.floor(diff / 3600000);
+        const minutes = Math.floor((diff % 3600000) / 60000);
+        const seconds = Math.floor((diff % 60000) / 1000);
+        const milliseconds = diff % 1000;
+    
+        setTime({ hours, minutes, seconds, milliseconds });
+      }, 1);
     }
   };
 
@@ -39,7 +37,7 @@ export function Stopwatch() {
     }
   };
 
-  const stop = () => {
+  const reset = () => {
     clearInterval(intervalRef.current);
     setTime({ hours: 0, minutes: 0, seconds: 0, milliseconds: 0 });
     setRunning(false);
@@ -53,9 +51,9 @@ export function Stopwatch() {
     <View style={styles.container}>
       <Text style={styles.text}>{formatTime(time)}</Text>
       <View style={styles.buttonContainer}>
-        <Button title='Start' onPress={start} />
-        <Button title='Pause' onPress={pause} />
-        <Button title='Stop' onPress={stop} />
+        <Button title='start' onPress={start} />
+        <Button title='pause' onPress={pause} />
+        <Button title='reset' onPress={reset} />
       </View>
     </View>
   );
