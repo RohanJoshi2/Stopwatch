@@ -91,7 +91,7 @@ export function Stopwatch() {
           <View key={index} style={styles.lapRow}>
             <Text style={styles.lapText}>{`Lap ${index + 1}: ${lap}`}</Text>
             <TouchableOpacity onPress={() => removeLap(index)} style={styles.deleteButton}>
-              <Text style={styles.deleteButtonText}>✕</Text> {/* "X" button */}
+              <Text style={styles.deleteButtonText}>✕</Text>
             </TouchableOpacity>
           </View>
         ))}
